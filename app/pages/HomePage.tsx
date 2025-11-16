@@ -119,7 +119,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-cyan-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
@@ -188,7 +188,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-linear-to-br from-purple-700 to-indigo-800 text-white py-16">
+      <section className="bg-linear-to-br from-purple-800 to-indigo-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl mb-4">
             {t({ id: "Siap Bergabung?", en: "Ready to Join?" })}
@@ -203,6 +203,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <Button
               size="lg"
               className="bg-white text-indigo-700 hover:bg-slate-100"
+              variant="outline"
               onClick={() => onNavigate("/how-to-join")}
             >
               {t({ id: "Cara Bergabung", en: "How to Join" })}
@@ -210,8 +211,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </Button>
             <Button
               size="lg"
-              className="bg-white text-indigo-700 hover:bg-slate-100"
-              variant="outline"
+              className="bg-white text-neutral-950 hover:bg-slate-100"
+              variant="secondary"
               onClick={() => onNavigate("/active-member")}
             >
               {t(translations.hero.viewDirectory)}

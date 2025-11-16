@@ -5,6 +5,8 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { HomePage } from '../app/pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { MembershipPage } from './pages/MembershipPage';
 import { Toaster } from '../components/ui/sonner';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('/');
@@ -18,6 +20,10 @@ export default function App() {
     switch (currentPage) {
       case '/':
         return <HomePage onNavigate={handleNavigate} />;
+      case '/about':
+        return <AboutPage />;
+      case '/membership':
+        return <MembershipPage onNavigate={handleNavigate} />;
       default:
         return <HomePage onNavigate={handleNavigate} />;
     }
