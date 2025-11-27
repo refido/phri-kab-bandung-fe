@@ -111,7 +111,7 @@ export function Footer({ onNavigate }: FooterProps) {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-400">
-          <p>© 2025 PHRI Bandung. {t(translations.footer.allRights)}.</p>
+          <p>© 2025 PHRI Kab Bandung. {t(translations.footer.allRights)}.</p>
         </div>
       </div>
     </footer>

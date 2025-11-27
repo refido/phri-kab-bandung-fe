@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { format } from "date-fns";
+import { enUS, id as idLocale } from "date-fns/locale";
+import { Calendar, Clock, MapPin, User } from "lucide-react";
+import { CallToAction } from "../../components/CallToAction";
+import { Hero } from "../../components/Hero";
+import { Badge } from "../../components/ui/badge";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../contexts/LanguageContext";
 import { mockEvents } from "../data/mockData";
-import { Card, CardContent } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
-import { Badge } from "../../components/ui/badge";
-import { Calendar, Clock, MapPin, User, Download } from "lucide-react";
-import { format } from "date-fns";
-import { id as idLocale, enUS } from "date-fns/locale";
 
-export function CalendarEventsPage() {
+interface CalendarEventsPageProps {
+  onNavigate: (page: string) => void;
+}
+
+export function CalendarEventsPage({ onNavigate }: CalendarEventsPageProps) {
   const { t, language } = useLanguage();
-  const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -28,34 +32,19 @@ export function CalendarEventsPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-emerald-600 to-teal-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Kalender & Acara", en: "Calendar & Events" })}
-          </h1>
-          <p className="text-xl text-emerald-50 max-w-3xl">
-            {t({
-              id: "Bergabunglah dengan konferensi, seminar, dan acara networking kami",
-              en: "Join our conferences, seminars, and networking events",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Kalender & Acara", en: "Calendar & Events" }}
+        description={{
+          id: "Bergabunglah dengan konferensi, seminar, dan acara networking kami",
+          en: "Join our conferences, seminars, and networking events",
+        }}
+      />
 
       {/* Upcoming Events */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-3xl text-slate-900">
-                {t({ id: "Acara Mendatang", en: "Upcoming Events" })}
-              </h2>
-              <Button variant="outline" className="gap-2">
-                <Download className="w-4 h-4" />
-                {t({ id: "Unduh Kalender", en: "Download Calendar" })}
-              </Button>
-            </div>
-
             {upcomingEvents.length > 0 ? (
               <div className="grid gap-6">
                 {upcomingEvents.map((event) => (
@@ -73,7 +62,7 @@ export function CalendarEventsPage() {
                       </div>
                       <CardContent className="md:col-span-2 p-6">
                         <div className="mb-3">
-                          <Badge className="bg-emerald-100 text-emerald-700">
+                          <Badge className="bg-purple-100 text-purple-700">
                             {t({ id: "Mendatang", en: "Upcoming" })}
                           </Badge>
                         </div>
@@ -103,7 +92,7 @@ export function CalendarEventsPage() {
                         <p className="text-slate-700 mb-4">
                           {t(event.description)}
                         </p>
-                        <Button className="bg-emerald-600 hover:bg-emerald-700">
+                        <Button className="bg-purple-600 hover:bg-purple-700">
                           {t({ id: "Daftar Sekarang", en: "Register Now" })}
                         </Button>
                       </CardContent>
@@ -130,7 +119,7 @@ export function CalendarEventsPage() {
 
       {/* Past Events */}
       {pastEvents.length > 0 && (
-        <section className="bg-slate-50 py-16">
+        <section className="bg-indigo-50 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl text-slate-900 mb-8">
               {t({ id: "Acara Sebelumnya", en: "Past Events" })}
@@ -173,29 +162,25 @@ export function CalendarEventsPage() {
       )}
 
       {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-xl bg-linear-to-br from-slate-900 to-slate-800 text-white">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h2 className="text-3xl mb-4">
-                {t({
-                  id: "Ingin Menyelenggarakan Acara?",
-                  en: "Want to Host an Event?",
-                })}
-              </h2>
-              <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
-                {t({
-                  id: "Anggota PHRI dapat mengajukan untuk menyelenggarakan acara dan mendapatkan dukungan promosi",
-                  en: "PHRI members can apply to host events and receive promotional support",
-                })}
-              </p>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
-                {t({ id: "Hubungi Kami", en: "Contact Us" })}
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <CallToAction
+        variant="slate"
+        useCard={true}
+        title={{
+          id: "Ingin Menyelenggarakan Acara?",
+          en: "Want to Host an Event?",
+        }}
+        description={{
+          id: "Anggota PHRI dapat mengajukan untuk menyelenggarakan acara dan mendapatkan dukungan promosi",
+          en: "PHRI members can apply to host events and receive promotional support",
+        }}
+        buttons={[
+          {
+            text: { id: "Hubungi Kami", en: "Contact Us" },
+            onClick: () => onNavigate("/contact"),
+            variant: "default",
+          },
+        ]}
+      />
     </div>
   );
 }

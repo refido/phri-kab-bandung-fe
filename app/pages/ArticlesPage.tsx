@@ -1,7 +1,8 @@
-import { useLanguage } from "../contexts/LanguageContext";
-import { Card, CardContent } from "../../components/ui/card";
+import { ArrowRight, Calendar, User } from "lucide-react";
+import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { Card, CardContent } from "../../components/ui/card";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function ArticlesPage() {
   const { t } = useLanguage();
@@ -60,19 +61,14 @@ export function ArticlesPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Artikel & Berita", en: "Articles & News" })}
-          </h1>
-          <p className="text-xl text-slate-200 max-w-3xl">
-            {t({
-              id: "Wawasan industri, profil anggota, dan pembaruan dari PHRI Bandung",
-              en: "Industry insights, member spotlights, and updates from PHRI Bandung",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Artikel & Berita", en: "Articles & News" }}
+        description={{
+          id: "Wawasan industri, profil anggota, dan pembaruan dari PHRI Bandung",
+          en: "Industry insights, member spotlights, and updates from PHRI Bandung",
+        }}
+      />
 
       {/* Featured Article */}
       <section className="py-16">
@@ -86,7 +82,7 @@ export function ArticlesPage() {
                   className="w-full h-full object-cover"
                 />
                 <CardContent className="p-8 md:p-12 flex flex-col justify-center">
-                  <Badge className="bg-emerald-100 text-emerald-700 w-fit mb-4">
+                  <Badge className="bg-purple-100 text-purple-700 w-fit mb-4">
                     {t({ id: "Unggulan", en: "Featured" })}
                   </Badge>
                   <h2 className="text-3xl text-slate-900 mb-4">
@@ -109,7 +105,7 @@ export function ArticlesPage() {
                       </span>
                     </div>
                   </div>
-                  <button className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700">
+                  <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700">
                     {t({ id: "Baca Selengkapnya", en: "Read More" })}
                     <ArrowRight className="w-4 h-4" />
                   </button>
@@ -154,7 +150,7 @@ export function ArticlesPage() {
                       </span>
                     </div>
                   </div>
-                  <button className="flex items-center gap-2 text-emerald-600 hover:text-emerald-700">
+                  <button className="flex items-center gap-2 text-purple-600 hover:text-purple-700">
                     {t({ id: "Baca Selengkapnya", en: "Read More" })}
                     <ArrowRight className="w-4 h-4" />
                   </button>
@@ -166,7 +162,7 @@ export function ArticlesPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-amber-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl text-slate-900 mb-4">
             {t({
@@ -187,9 +183,9 @@ export function ArticlesPage() {
                 id: "Alamat email Anda",
                 en: "Your email address",
               })}
-              className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-600"
+              className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600"
             />
-            <button className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors">
+            <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
               {t({ id: "Berlangganan", en: "Subscribe" })}
             </button>
           </div>

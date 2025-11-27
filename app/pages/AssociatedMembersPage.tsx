@@ -1,8 +1,16 @@
-import { useLanguage } from "../contexts/LanguageContext";
+import { Briefcase, Building2, Handshake } from "lucide-react";
+import { CallToAction } from "../../components/CallToAction";
+import { Hero } from "../../components/Hero";
 import { Card, CardContent } from "../../components/ui/card";
-import { Handshake, Building2, Briefcase } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
-export function AssociatedMembersPage() {
+interface AssociatedMembersPageProps {
+  onNavigate: (page: string) => void;
+}
+
+export function AssociatedMembersPage({
+  onNavigate,
+}: AssociatedMembersPageProps) {
   const { t } = useLanguage();
 
   const associatedOrgs = [
@@ -38,19 +46,14 @@ export function AssociatedMembersPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Anggota Asosiasi", en: "Associated Members" })}
-          </h1>
-          <p className="text-xl text-slate-200 max-w-3xl">
-            {t({
-              id: "Organisasi mitra dan sekutu yang mendukung misi PHRI Bandung",
-              en: "Partner and allied organizations supporting PHRI Bandung mission",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Anggota Asosiasi", en: "Associated Members" }}
+        description={{
+          id: "Organisasi mitra dan sekutu yang mendukung misi PHRI Bandung",
+          en: "Partner and allied organizations supporting PHRI Bandung mission",
+        }}
+      />
 
       {/* Associated Organizations */}
       <section className="py-16">
@@ -74,13 +77,13 @@ export function AssociatedMembersPage() {
                 className="border-0 shadow-lg hover:shadow-xl transition-shadow"
               >
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center mb-6 mx-auto">
+                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-600 to-indigo-600 flex items-center justify-center mb-6 mx-auto">
                     <org.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl text-slate-900 mb-2 text-center">
                     {org.name}
                   </h3>
-                  <p className="text-emerald-600 text-center mb-4">
+                  <p className="text-purple-600 text-center mb-4">
                     {t(org.type)}
                   </p>
                   <p className="text-slate-600 text-center">
@@ -94,7 +97,7 @@ export function AssociatedMembersPage() {
       </section>
 
       {/* Partnership Benefits */}
-      <section className="bg-amber-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-slate-900 mb-4">
@@ -110,7 +113,7 @@ export function AssociatedMembersPage() {
                 </h3>
                 <ul className="space-y-2 text-slate-700">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({
                         id: "Akses ke sumber daya mitra",
@@ -119,7 +122,7 @@ export function AssociatedMembersPage() {
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({
                         id: "Peluang kolaborasi bisnis",
@@ -128,7 +131,7 @@ export function AssociatedMembersPage() {
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({
                         id: "Pembaruan industri eksklusif",
@@ -150,7 +153,7 @@ export function AssociatedMembersPage() {
                 </h3>
                 <ul className="space-y-2 text-slate-700">
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({
                         id: "Jangkauan ke jaringan perhotelan",
@@ -159,13 +162,13 @@ export function AssociatedMembersPage() {
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({ id: "Program bersama", en: "Joint programs" })}
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-purple-600">•</span>
                     <span>
                       {t({ id: "Visibilitas merek", en: "Brand visibility" })}
                     </span>
@@ -178,29 +181,25 @@ export function AssociatedMembersPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="border-0 shadow-xl bg-linear-to-br from-emerald-600 to-teal-600 text-white">
-            <CardContent className="p-8 md:p-12 text-center">
-              <h2 className="text-3xl mb-4">
-                {t({
-                  id: "Tertarik Bermitra?",
-                  en: "Interested in Partnering?",
-                })}
-              </h2>
-              <p className="text-xl text-emerald-50 mb-8 max-w-2xl mx-auto">
-                {t({
-                  id: "Hubungi kami untuk mendiskusikan peluang kemitraan strategis",
-                  en: "Contact us to discuss strategic partnership opportunities",
-                })}
-              </p>
-              <button className="px-8 py-3 bg-white text-emerald-700 rounded-lg hover:bg-slate-100 transition-colors">
-                {t({ id: "Hubungi Kami", en: "Contact Us" })}
-              </button>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <CallToAction
+        variant="purple"
+        useCard={true}
+        title={{
+          id: "Tertarik Bermitra?",
+          en: "Interested in Partnering?",
+        }}
+        description={{
+          id: "Hubungi kami untuk mendiskusikan peluang kemitraan strategis",
+          en: "Contact us to discuss strategic partnership opportunities",
+        }}
+        buttons={[
+          {
+            text: { id: "Hubungi Kami", en: "Contact Us" },
+            onClick: () => onNavigate("/contact"),
+            variant: "default",
+          },
+        ]}
+      />
     </div>
   );
 }

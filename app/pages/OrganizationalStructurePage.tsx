@@ -1,18 +1,19 @@
-import { useLanguage } from "../contexts/LanguageContext";
-import { Card, CardContent } from "../../components/ui/card";
 import {
-  Users,
-  UserCheck,
   Award,
   BookOpen,
   Calendar,
-  Handshake,
-  MessageCircle,
   DollarSign,
   Globe,
+  Handshake,
   Leaf,
   MapPin,
+  MessageCircle,
+  UserCheck,
+  Users,
 } from "lucide-react";
+import { Hero } from "../../components/Hero";
+import { Card, CardContent } from "../../components/ui/card";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function OrganizationalStructurePage() {
   const { t } = useLanguage();
@@ -137,19 +138,14 @@ export function OrganizationalStructurePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Struktur Organisasi", en: "Organizational Structure" })}
-          </h1>
-          <p className="text-xl text-slate-200 max-w-3xl">
-            {t({
-              id: "Tata kelola yang transparan dan akuntabel untuk melayani anggota",
-              en: "Transparent and accountable governance serving our members",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Struktur Organisasi", en: "Organizational Structure" }}
+        description={{
+          id: "Tata kelola yang transparan dan akuntabel untuk melayani anggota",
+          en: "Transparent and accountable governance serving our members",
+        }}
+      />
 
       {/* National Board */}
       <section className="py-16">
@@ -170,7 +166,7 @@ export function OrganizationalStructurePage() {
             {board.map((member, index) => (
               <Card key={index} className="border-0 shadow-lg">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-600 to-indigo-600 mx-auto mb-4 flex items-center justify-center">
                     <UserCheck className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl text-slate-900 mb-2">
@@ -187,7 +183,7 @@ export function OrganizationalStructurePage() {
       </section>
 
       {/* Secretariat */}
-      <section className="bg-amber-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl text-slate-900 mb-4">
@@ -248,7 +244,7 @@ export function OrganizationalStructurePage() {
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
                       <division.icon className="w-6 h-6" />
                     </div>
                     <div>
@@ -268,7 +264,7 @@ export function OrganizationalStructurePage() {
       </section>
 
       {/* Governance Terms */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-slate-900 mb-4">
@@ -279,7 +275,7 @@ export function OrganizationalStructurePage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <Card className="border-0 shadow-md">
               <CardContent className="p-6 text-center">
-                <div className="text-4xl text-emerald-600 mb-2">3</div>
+                <div className="text-4xl text-purple-600 mb-2">3</div>
                 <h3 className="text-xl text-slate-900 mb-2">
                   {t({ id: "Tahun", en: "Years" })}
                 </h3>
@@ -291,7 +287,7 @@ export function OrganizationalStructurePage() {
 
             <Card className="border-0 shadow-md">
               <CardContent className="p-6 text-center">
-                <div className="text-4xl text-emerald-600 mb-2">4x</div>
+                <div className="text-4xl text-purple-600 mb-2">4x</div>
                 <h3 className="text-xl text-slate-900 mb-2">
                   {t({ id: "Per Tahun", en: "Per Year" })}
                 </h3>
@@ -303,7 +299,7 @@ export function OrganizationalStructurePage() {
 
             <Card className="border-0 shadow-md">
               <CardContent className="p-6 text-center">
-                <div className="text-4xl text-emerald-600 mb-2">100%</div>
+                <div className="text-4xl text-purple-600 mb-2">100%</div>
                 <h3 className="text-xl text-slate-900 mb-2">
                   {t({ id: "Transparan", en: "Transparent" })}
                 </h3>

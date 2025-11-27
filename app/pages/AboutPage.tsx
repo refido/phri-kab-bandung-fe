@@ -1,6 +1,7 @@
-import { useLanguage } from "../contexts/LanguageContext";
+import { Award, Eye, MapPin, Target, Users } from "lucide-react";
+import { Hero } from "../../components/Hero";
 import { Card, CardContent } from "../../components/ui/card";
-import { Target, Eye, Award, Users } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function AboutPage() {
   const { t } = useLanguage();
@@ -43,19 +44,16 @@ export function AboutPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Tentang PHRI Bandung", en: "About PHRI Kab Bandung" })}
-          </h1>
-          <p className="text-xl text-slate-200 max-w-3xl">
-            {t({
-              id: "Asosiasi kontemporer yang memadukan tradisi keramahan Indonesia dengan standar bisnis modern",
-              en: "A contemporary association blending Indonesian hospitality tradition with modern business standards",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slateWithImage"
+        size="large"
+        backgroundImage="https://images.unsplash.com/photo-1560053608-13721e0d69e8?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        title={{ id: "Tentang PHRI Bandung", en: "About PHRI Kab Bandung" }}
+        description={{
+          id: "Organisasi kemasyarakatan yang menghimpun pengusaha kepariwisataan bidang perhotelan dan restoran",
+          en: "Community organization uniting tourism entrepreneurs in hotels and restaurants",
+        }}
+      />
 
       {/* Profile */}
       <section className="py-16">
@@ -68,14 +66,20 @@ export function AboutPage() {
               <div className="space-y-4 text-slate-700">
                 <p>
                   {t({
-                    id: "Perhimpunan Hotel dan Restoran Indonesia (PHRI) Kab Bandung adalah organisasi profesional yang mewakili kepentingan industri perhotelan dan restoran di wilayah Bandung dan sekitarnya. Didirikan untuk meningkatkan standar layanan, mendorong kolaborasi, dan memajukan industri pariwisata di Indonesia.",
-                    en: "The Indonesian Hotel and Restaurant Association (PHRI) Kab Bandung is a professional organization representing the interests of the hotel and restaurant industry in Bandung and surrounding areas. Established to elevate service standards, foster collaboration, and advance the tourism industry in Indonesia.",
+                    id: "PHRI (Perhimpunan Hotel & Restoran Indonesia) Kabupaten Bandung adalah organisasi kemasyarakatan yang menghimpun para anggotanya dari pengusaha kepariwisataan bidang perhotelan dan restoran yang berada di wilayah hukum Kabupaten Bandung, Jawa Barat.",
+                    en: "PHRI (Indonesian Hotel & Restaurant Association) Kabupaten Bandung is a community organization that brings together members from tourism entrepreneurs in the hotel and restaurant sectors within the jurisdiction of Bandung Regency, West Java.",
                   })}
                 </p>
                 <p>
                   {t({
-                    id: "Dengan lebih dari 400 anggota aktif, PHRI Bandung melayani hotel dari berbagai kategori bintang, restoran dari berbagai segmen, institusi pendidikan, dan anggota afiliasi yang berkontribusi pada ekosistem perhotelan.",
-                    en: "With over 400 active members, PHRI Bandung serves hotels across star categories, restaurants across segments, educational institutions, and affiliate members contributing to the hospitality ecosystem.",
+                    id: "PHRI awalnya didirikan oleh para tokoh pengusaha hotel dan restoran di Indonesia yang berpusat di Jakarta sebagai Badan Pimpinan Pusat (BPP) membawahi tingkat provinsi dan kabupaten kota. BPC PHRI Kabupaten Bandung menginduk ke BPD PHRI Jawa Barat.",
+                    en: "PHRI was originally founded by hotel and restaurant entrepreneurs in Indonesia, centered in Jakarta as the Central Management Board (BPP), overseeing provincial and regency/city levels. BPC PHRI Kabupaten Bandung is under BPD PHRI West Java.",
+                  })}
+                </p>
+                <p>
+                  {t({
+                    id: "PHRI mencakup berbagai jenis akomodasi (hotel, penginapan, villa, cottage, bungalow, homestay), usaha restoran (restoran, rumah makan, cafe, kantin, cafeteria, kedai), serta lembaga pendidikan kepariwisataan yang berkontribusi dalam pengembangan SDM Pariwisata.",
+                    en: "PHRI includes various types of accommodation (hotels, inns, villas, cottages, bungalows, homestays), restaurant businesses (restaurants, eateries, cafes, canteens, cafeterias, stalls), and tourism education institutions contributing to the development of Tourism HR.",
                   })}
                 </p>
               </div>
@@ -91,22 +95,60 @@ export function AboutPage() {
         </div>
       </section>
 
+      {/* Geographic Coverage */}
+      <section className="bg-slate-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl text-slate-900 mb-4">
+              {t({ id: "Cakupan Wilayah", en: "Geographic Coverage" })}
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              {t({
+                id: "BPC PHRI Kabupaten Bandung mencakup wilayah yang luas dan dibagi dalam 4 koordinator wilayah",
+                en: "BPC PHRI Kabupaten Bandung covers a vast area divided into 4 regional coordinators",
+              })}
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { region: { id: "Utara", en: "North" }, area: "Dago" },
+              { region: { id: "Timur", en: "East" }, area: "Nagreg" },
+              { region: { id: "Selatan", en: "South" }, area: "Ciwidey" },
+              { region: { id: "Barat", en: "West" }, area: "Kutawaringin" },
+            ].map((korwil, index) => (
+              <Card key={index} className="border-0 shadow-md">
+                <CardContent className="p-6 text-center">
+                  <MapPin className="w-8 h-8 text-purple-600 mx-auto mb-3" />
+                  <h3 className="text-xl text-slate-900 mb-1">
+                    {t({ id: "Korwil", en: "Regional" })} {t(korwil.region)}
+                  </h3>
+                  <p className="text-slate-600">{korwil.area}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Vision & Mission */}
       <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <Card className="border-0 shadow-lg">
               <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-700 to-indigo-700 flex items-center justify-center mb-6">
-                  <Eye className="w-8 h-8 text-white" />
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-700 to-indigo-700 flex items-center justify-center shrink-0">
+                    <Eye className="w-8 h-8 text-white" />
+                  </div>
+                  <h2 className="text-4xl text-slate-900">
+                    {t({ id: "Visi", en: "Vision" })}
+                  </h2>
                 </div>
-                <h2 className="text-2xl text-slate-900 mb-4">
-                  {t({ id: "Visi", en: "Vision" })}
-                </h2>
-                <p className="text-slate-700">
+                <p className="text-slate-700 text-lg font-medium">
                   {t({
-                    id: "Menjadi mitra terpercaya yang meningkatkan keunggulan perhotelan dan layanan makanan, mendorong kolaborasi, dan memajukan standar industri di seluruh Indonesia.",
-                    en: "To be the trusted partner elevating hospitality and food-service excellence, fostering collaboration, and advancing industry standards nationwide.",
+                    id: "Membangun PHRI Kab Bandung menuju puncak keunggulan kepariwisataan nasional",
+                    en: "Building PHRI Kab Bandung towards the peak of national tourism excellence",
                   })}
                 </p>
               </CardContent>
@@ -114,18 +156,43 @@ export function AboutPage() {
 
             <Card className="border-0 shadow-lg">
               <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-700 to-indigo-700 flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-white" />
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-full bg-linear-to-br from-purple-700 to-indigo-700 flex items-center justify-center shrink-0">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h2 className="text-4xl text-slate-900">
+                    {t({ id: "Misi", en: "Mission" })}
+                  </h2>
                 </div>
-                <h2 className="text-2xl text-slate-900 mb-4">
-                  {t({ id: "Misi", en: "Mission" })}
-                </h2>
-                <p className="text-slate-700">
-                  {t({
-                    id: "Memberikan nilai kepada anggota melalui advokasi, pendidikan, networking, dan dukungan operasional yang memperkuat ekosistem perhotelan.",
-                    en: "Deliver member value through advocacy, education, networking, and operational support that strengthens the hospitality ecosystem.",
-                  })}
-                </p>
+                <ul className="space-y-3 text-slate-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold mt-1">1.</span>
+                    <span>
+                      {t({
+                        id: "Membangun SDM PHRI yang kreatif, amanah, unggul, dan terdepan (KAUT)",
+                        en: "Build creative, trustworthy, excellent, and leading (KAUT) PHRI human resources",
+                      })}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold mt-1">2.</span>
+                    <span>
+                      {t({
+                        id: "Mendorong usaha-usaha anggota PHRI Kab Bandung sukses, gemilang, mandiri (SUGEMA)",
+                        en: "Encourage PHRI Kab Bandung member businesses to be successful, glorious, and independent (SUGEMA)",
+                      })}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-purple-600 font-bold mt-1">3.</span>
+                    <span>
+                      {t({
+                        id: "Menciptakan hotel-hotel & restoran PHRI Kab Bandung menjadi destinasi wisata pilihan yang terkenal dengan keramahannya, kenyamanannya, keamanannya, dan kenangannya bagi wisatawan (TERKENANG)",
+                        en: "Create PHRI Kab Bandung hotels & restaurants to become tourist destination choices famous for their hospitality, comfort, security, and memories for tourists (TERKENANG)",
+                      })}
+                    </span>
+                  </li>
+                </ul>
               </CardContent>
             </Card>
           </div>
@@ -177,8 +244,8 @@ export function AboutPage() {
           <div className="max-w-3xl mx-auto space-y-6 text-slate-700">
             <p>
               {t({
-                id: "PHRI Bandung dikelola oleh Dewan Pengurus Nasional yang dipilih, dengan dukungan Sekretariat Eksekutif dan berbagai divisi fungsional. Struktur governance kami dirancang untuk transparansi, akuntabilitas, dan pengambilan keputusan yang efektif.",
-                en: "PHRI Bandung is governed by an elected National Board, supported by an Executive Secretariat and various functional divisions. Our governance structure is designed for transparency, accountability, and effective decision-making.",
+                id: "PHRI Bandung dikelola oleh Dewan Pengurus yang dipilih, dengan dukungan Sekretariat Eksekutif dan berbagai divisi fungsional. Struktur governance kami dirancang untuk transparansi, akuntabilitas, dan pengambilan keputusan yang efektif.",
+                en: "PHRI Bandung is governed by an elected Board, supported by an Executive Secretariat and various functional divisions. Our governance structure is designed for transparency, accountability, and effective decision-making.",
               })}
             </p>
             <div className="grid md:grid-cols-2 gap-6 mt-8">

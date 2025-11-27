@@ -1,10 +1,18 @@
+import {
+  Building2,
+  Globe,
+  Mail,
+  MapPin,
+  Phone,
+  Search,
+  Users,
+  Utensils,
+} from "lucide-react";
 import { useState } from "react";
-import { useLanguage } from "../contexts/LanguageContext";
-import { mockMembers } from "../data/mockData";
-import { Card, CardContent } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
+import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
+import { Card, CardContent } from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
 import {
   Select,
   SelectContent,
@@ -12,24 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
-import {
-  Building2,
-  Utensils,
-  GraduationCap,
-  Users,
-  Search,
-  MapPin,
-  Phone,
-  Mail,
-  Globe,
-  Map,
-} from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { mockMembers } from "../data/mockData";
 
 export function ActiveMembersPage() {
   const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
+  const [viewMode] = useState<"grid" | "map">("grid");
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -37,8 +35,6 @@ export function ActiveMembersPage() {
         return Building2;
       case "restaurant":
         return Utensils;
-      case "education":
-        return GraduationCap;
       default:
         return Users;
     }
@@ -55,19 +51,16 @@ export function ActiveMembersPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-emerald-600 to-teal-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Anggota Aktif", en: "Active Members" })}
-          </h1>
-          <p className="text-xl text-emerald-50 max-w-3xl">
-            {t({
-              id: "Jelajahi direktori anggota PHRI Bandung yang aktif",
-              en: "Explore our directory of active PHRI Bandung members",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slateWithImage"
+        size="large"
+        backgroundImage="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        title={{ id: "Anggota Aktif", en: "Active Members" }}
+        description={{
+          id: "Jelajahi direktori anggota PHRI Kab Bandung yang aktif",
+          en: "Explore our directory of active PHRI Kab Bandung members",
+        }}
+      />
 
       {/* Search & Filters */}
       <section className="bg-white border-b sticky top-[73px] z-40">
@@ -107,30 +100,6 @@ export function ActiveMembersPage() {
                 </SelectItem>
               </SelectContent>
             </Select>
-            <div className="flex gap-2">
-              <Button
-                variant={viewMode === "grid" ? "default" : "outline"}
-                onClick={() => setViewMode("grid")}
-                className={
-                  viewMode === "grid"
-                    ? "bg-emerald-600 hover:bg-emerald-700"
-                    : ""
-                }
-              >
-                <Building2 className="w-4 h-4" />
-              </Button>
-              <Button
-                variant={viewMode === "map" ? "default" : "outline"}
-                onClick={() => setViewMode("map")}
-                className={
-                  viewMode === "map"
-                    ? "bg-emerald-600 hover:bg-emerald-700"
-                    : ""
-                }
-              >
-                <Map className="w-4 h-4" />
-              </Button>
-            </div>
           </div>
           <div className="mt-4 text-sm text-slate-600">
             {t({ id: "Menampilkan", en: "Showing" })} {filteredMembers.length}{" "}
@@ -165,9 +134,9 @@ export function ActiveMembersPage() {
                           <h3 className="text-xl text-slate-900">
                             {member.name}
                           </h3>
-                          <Icon className="w-5 h-5 text-emerald-600 shrink-0" />
+                          <Icon className="w-5 h-5 text-purple-600 shrink-0" />
                         </div>
-                        <Badge className="bg-emerald-100 text-emerald-700 mb-3">
+                        <Badge className="bg-purple-100 text-purple-700 mb-3">
                           {member.category}
                           {member.starRating && ` - ${member.starRating} ⭐`}
                         </Badge>
@@ -194,7 +163,7 @@ export function ActiveMembersPage() {
                                 href={`https://${member.website}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-emerald-600 hover:text-emerald-700 truncate"
+                                className="text-purple-600 hover:text-purple-700 truncate"
                               >
                                 {member.website}
                               </a>
@@ -219,33 +188,6 @@ export function ActiveMembersPage() {
                 </CardContent>
               </Card>
             )}
-          </div>
-        </section>
-      )}
-
-      {/* Map View */}
-      {viewMode === "map" && (
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <Map className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                <h3 className="text-xl text-slate-900 mb-2">
-                  {t({ id: "Tampilan Peta", en: "Map View" })}
-                </h3>
-                <p className="text-slate-600 mb-6">
-                  {t({
-                    id: "Tampilan peta interaktif akan menampilkan lokasi semua anggota di Bandung",
-                    en: "Interactive map view would display all member locations across Bandung",
-                  })}
-                </p>
-                <div className="bg-slate-100 rounded-lg h-96 flex items-center justify-center">
-                  <p className="text-slate-500">
-                    {t({ id: "[Peta Interaktif]", en: "[Interactive Map]" })}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </section>
       )}

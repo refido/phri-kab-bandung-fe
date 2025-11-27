@@ -1,11 +1,12 @@
+import { X } from "lucide-react";
 import { useState } from "react";
+import { Hero } from "../../components/Hero";
+import { Badge } from "../../components/ui/badge";
+import { Button } from "../../components/ui/button";
+import { Card } from "../../components/ui/card";
+import { Dialog, DialogContent } from "../../components/ui/dialog";
 import { useLanguage } from "../contexts/LanguageContext";
 import { mockGalleryItems } from "../data/mockData";
-import { Card } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
-import { Badge } from "../../components/ui/badge";
-import { Dialog, DialogContent } from "../../components/ui/dialog";
-import { X, Upload } from "lucide-react";
 
 export function GalleryPage() {
   const { t } = useLanguage();
@@ -37,19 +38,14 @@ export function GalleryPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Galeri", en: "Gallery" })}
-          </h1>
-          <p className="text-xl text-slate-200 max-w-3xl">
-            {t({
-              id: "Jelajahi momen berkesan dari acara, anggota, dan kegiatan PHRI Bandung",
-              en: "Explore memorable moments from PHRI Bandung events, members, and activities",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Galeri", en: "Gallery" }}
+        description={{
+          id: "Jelajahi momen berkesan dari acara, anggota, dan kegiatan PHRI Bandung",
+          en: "Explore memorable moments from PHRI Bandung events, members, and activities",
+        }}
+      />
 
       {/* Gallery */}
       <section className="py-16">
@@ -68,7 +64,7 @@ export function GalleryPage() {
                     }
                     className={
                       selectedCategory === category.value
-                        ? "bg-emerald-600 hover:bg-emerald-700"
+                        ? "bg-purple-600 hover:bg-purple-700"
                         : ""
                     }
                     onClick={() => setSelectedCategory(category.value)}
@@ -77,10 +73,6 @@ export function GalleryPage() {
                   </Button>
                 ))}
               </div>
-              <Button variant="outline" className="gap-2">
-                <Upload className="w-4 h-4" />
-                {t({ id: "Kirim Foto", en: "Submit Photos" })}
-              </Button>
             </div>
             <p className="text-slate-600">
               {t({ id: "Menampilkan", en: "Showing" })} {filteredItems.length}{" "}
@@ -103,7 +95,7 @@ export function GalleryPage() {
                   loading="lazy"
                 />
                 <div className="p-4">
-                  <Badge className="bg-emerald-100 text-emerald-700 mb-2">
+                  <Badge className="bg-purple-100 text-purple-700 mb-2">
                     {getCategoryLabel(item.category)}
                   </Badge>
                   <p className="text-slate-700 text-sm">{t(item.caption)}</p>
@@ -154,7 +146,7 @@ export function GalleryPage() {
                     className="w-full h-auto max-h-[90vh] object-contain"
                   />
                   <div className="p-6 bg-white">
-                    <Badge className="bg-emerald-100 text-emerald-700 mb-2">
+                    <Badge className="bg-purple-100 text-purple-700 mb-2">
                       {getCategoryLabel(item.category)}
                     </Badge>
                     <p className="text-slate-900 mb-1">{t(item.caption)}</p>

@@ -1,9 +1,19 @@
+import {
+  AlertCircle,
+  CheckCircle,
+  Edit2,
+  FileText,
+  Send,
+  Upload,
+  X,
+} from "lucide-react";
 import { useState } from "react";
-import { useLanguage } from "../contexts/LanguageContext";
-import { Card, CardContent } from "../../components/ui/card";
+import { toast } from "sonner";
+import { Hero } from "../../components/Hero";
 import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
+import { Checkbox } from "../../components/ui/checkbox";
 import { Input } from "../../components/ui/input";
-import { Textarea } from "../../components/ui/textarea";
 import { Label } from "../../components/ui/label";
 import {
   Select,
@@ -12,17 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
-import {
-  Upload,
-  Send,
-  CheckCircle,
-  X,
-  FileText,
-  Edit2,
-  AlertCircle,
-} from "lucide-react";
-import { toast } from "sonner";
-import { Checkbox } from "../../components/ui/checkbox";
+import { Textarea } from "../../components/ui/textarea";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function SubmitListingPage() {
   const { t } = useLanguage();
@@ -244,22 +245,17 @@ export function SubmitListingPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-emerald-600 to-teal-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({
-              id: "Ajukan Listing Perusahaan",
-              en: "Submit Company Listing",
-            })}
-          </h1>
-          <p className="text-xl text-emerald-50 max-w-3xl">
-            {t({
-              id: "Lengkapi formulir di bawah ini untuk mengajukan keanggotaan PHRI Bandung",
-              en: "Complete the form below to apply for PHRI Bandung membership",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{
+          id: "Ajukan Listing Perusahaan",
+          en: "Submit Company Listing",
+        }}
+        description={{
+          id: "Lengkapi formulir di bawah ini untuk mengajukan keanggotaan PHRI Bandung",
+          en: "Complete the form below to apply for PHRI Bandung membership",
+        }}
+      />
 
       {/* Progress Steps */}
       <section className="bg-white border-b py-6">
@@ -270,7 +266,7 @@ export function SubmitListingPage() {
               style={{ marginLeft: "5%", marginRight: "5%" }}
             >
               <div
-                className="h-full bg-emerald-600 transition-all duration-300"
+                className="h-full bg-purple-600 transition-all duration-300"
                 style={{ width: `${((step - 1) / 2) * 100}%` }}
               />
             </div>
@@ -295,7 +291,7 @@ export function SubmitListingPage() {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center z-10 transition-all duration-300 ${
                       step >= s.num
-                        ? "bg-emerald-600 text-white"
+                        ? "bg-purple-600 text-white"
                         : "bg-slate-200 text-slate-400"
                     }`}
                   >
@@ -304,7 +300,7 @@ export function SubmitListingPage() {
                   <span
                     className={`text-sm mt-2 transition-all duration-300 ${
                       step === s.num
-                        ? "text-emerald-600 font-semibold"
+                        ? "text-purple-600 font-semibold"
                         : "text-slate-600"
                     }`}
                   >
@@ -335,7 +331,8 @@ export function SubmitListingPage() {
 
                     <div>
                       <Label htmlFor="businessName">
-                        {t({ id: "Nama Bisnis", en: "Business Name" })} *
+                        {t({ id: "Nama Bisnis", en: "Business Name" })}{" "}
+                        <span className="text-red-500">*</span>
                       </Label>
                       <Input
                         id="businessName"
@@ -349,7 +346,8 @@ export function SubmitListingPage() {
 
                     <div>
                       <Label htmlFor="category">
-                        {t({ id: "Kategori", en: "Category" })} *
+                        {t({ id: "Kategori", en: "Category" })}{" "}
+                        <span className="text-red-500">*</span>
                       </Label>
                       <Select
                         value={formData.category}
@@ -397,7 +395,8 @@ export function SubmitListingPage() {
 
                     <div>
                       <Label htmlFor="address">
-                        {t({ id: "Alamat Lengkap", en: "Full Address" })} *
+                        {t({ id: "Alamat Lengkap", en: "Full Address" })}{" "}
+                        <span className="text-red-500">*</span>
                       </Label>
                       <Textarea
                         id="address"
@@ -413,7 +412,8 @@ export function SubmitListingPage() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="phone">
-                          {t({ id: "Telepon Bisnis", en: "Business Phone" })} *
+                          {t({ id: "Telepon Bisnis", en: "Business Phone" })}{" "}
+                          <span className="text-red-500">*</span>
                         </Label>
                         <Input
                           id="phone"
@@ -427,7 +427,8 @@ export function SubmitListingPage() {
                       </div>
                       <div>
                         <Label htmlFor="email">
-                          {t({ id: "Email Bisnis", en: "Business Email" })} *
+                          {t({ id: "Email Bisnis", en: "Business Email" })}{" "}
+                          <span className="text-red-500">*</span>
                         </Label>
                         <Input
                           id="email"
@@ -473,7 +474,7 @@ export function SubmitListingPage() {
                           id: "Deskripsi Bisnis",
                           en: "Business Description",
                         })}{" "}
-                        *
+                        <span className="text-red-500">*</span>
                       </Label>
                       <Textarea
                         id="description"
@@ -496,7 +497,7 @@ export function SubmitListingPage() {
                           id: "Nama Kontak Person",
                           en: "Contact Person Name",
                         })}{" "}
-                        *
+                        <span className="text-red-500">*</span>
                       </Label>
                       <Input
                         id="contactPerson"
@@ -515,7 +516,7 @@ export function SubmitListingPage() {
                             id: "Telepon Kontak Person",
                             en: "Contact Phone",
                           })}{" "}
-                          *
+                          <span className="text-red-500">*</span>
                         </Label>
                         <Input
                           id="contactPhone"
@@ -533,7 +534,7 @@ export function SubmitListingPage() {
                             id: "Email Kontak Person",
                             en: "Contact Email",
                           })}{" "}
-                          *
+                          <span className="text-red-500">*</span>
                         </Label>
                         <Input
                           id="contactEmail"
@@ -554,7 +555,7 @@ export function SubmitListingPage() {
                           en: "Supporting Documents",
                         })}
                       </Label>
-                      <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:border-emerald-500 transition-colors">
+                      <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:border-purple-500 transition-colors">
                         <Upload className="w-12 h-12 text-slate-400 mx-auto mb-4" />
                         <p className="text-slate-600 mb-2">
                           {t({
@@ -627,7 +628,7 @@ export function SubmitListingPage() {
                     </div>
 
                     {/* Business Information Section */}
-                    <Card className="border-emerald-200">
+                    <Card className="border-purple-200">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-4">
                           <h3 className="text-lg font-semibold text-slate-900">
@@ -641,7 +642,7 @@ export function SubmitListingPage() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleEditStep(1)}
-                            className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                            className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
                           >
                             <Edit2 className="w-4 h-4 mr-1" />
                             {t({ id: "Edit", en: "Edit" })}
@@ -741,7 +742,7 @@ export function SubmitListingPage() {
                     </Card>
 
                     {/* Contact Details Section */}
-                    <Card className="border-emerald-200">
+                    <Card className="border-purple-200">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-4">
                           <h3 className="text-lg font-semibold text-slate-900">
@@ -752,7 +753,7 @@ export function SubmitListingPage() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleEditStep(2)}
-                            className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                            className="text-purple-600 hover:text-purple-700 hover:bg-purple-50"
                           >
                             <Edit2 className="w-4 h-4 mr-1" />
                             {t({ id: "Edit", en: "Edit" })}
@@ -832,7 +833,7 @@ export function SubmitListingPage() {
                                     key={index}
                                     className="flex items-center gap-2 text-sm"
                                   >
-                                    <FileText className="w-4 h-4 text-emerald-600" />
+                                    <FileText className="w-4 h-4 text-purple-600" />
                                     <span className="text-slate-900">
                                       {file.name}
                                     </span>
@@ -849,7 +850,7 @@ export function SubmitListingPage() {
                     </Card>
 
                     {/* Terms and Conditions */}
-                    <Card className="border-emerald-200 bg-emerald-50">
+                    <Card className="border-indigo-200 bg-indigo-50">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-3">
                           <Checkbox
@@ -863,7 +864,7 @@ export function SubmitListingPage() {
                           <div className="flex-1">
                             <Label
                               htmlFor="terms"
-                              className="text-sm text-emerald-900 cursor-pointer"
+                              className="text-sm text-indigo-900 cursor-pointer"
                             >
                               {t({
                                 id: "Saya menyatakan bahwa semua informasi yang diberikan adalah benar, akurat, dan lengkap. Saya memahami bahwa informasi palsu dapat mengakibatkan penolakan atau pembatalan keanggotaan.",
@@ -913,7 +914,7 @@ export function SubmitListingPage() {
                     {step < 3 ? (
                       <Button
                         type="button"
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-purple-600 hover:bg-purple-700"
                         onClick={handleNext}
                       >
                         {t({ id: "Lanjut", en: "Next" })}
@@ -921,7 +922,7 @@ export function SubmitListingPage() {
                     ) : (
                       <Button
                         type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-700"
+                        className="bg-purple-600 hover:bg-purple-700"
                         disabled={!termsAgreed}
                       >
                         <Send className="w-4 h-4 mr-2" />

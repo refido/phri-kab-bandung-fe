@@ -1,14 +1,15 @@
-import { useLanguage } from "../contexts/LanguageContext";
-import { Card, CardContent } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
 import {
+  ArrowRight,
+  Award,
   CheckCircle2,
+  Clock,
   FileText,
   UserCheck,
-  Clock,
-  Award,
-  ArrowRight,
 } from "lucide-react";
+import { CallToAction } from "../../components/CallToAction";
+import { Hero } from "../../components/Hero";
+import { Card, CardContent } from "../../components/ui/card";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface HowToJoinPageProps {
   onNavigate: (page: string) => void;
@@ -120,19 +121,14 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-linear-to-br from-emerald-600 to-teal-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl mb-4">
-            {t({ id: "Cara Bergabung", en: "How to Join" })}
-          </h1>
-          <p className="text-xl text-emerald-50 max-w-3xl">
-            {t({
-              id: "Mulai perjalanan Anda dengan PHRI Bandung dalam 6 langkah mudah",
-              en: "Start your journey with PHRI Bandung in 6 easy steps",
-            })}
-          </p>
-        </div>
-      </section>
+      <Hero
+        variant="slate"
+        title={{ id: "Cara Bergabung", en: "How to Join" }}
+        description={{
+          id: "Mulai perjalanan Anda dengan PHRI Bandung dalam 6 langkah mudah",
+          en: "Start your journey with PHRI Bandung in 6 easy steps",
+        }}
+      />
 
       {/* Steps */}
       <section className="py-16">
@@ -157,12 +153,12 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center text-white shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-white shrink-0">
                       {step.number}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <step.icon className="w-5 h-5 text-emerald-600" />
+                        <step.icon className="w-5 h-5 text-purple-600" />
                         <h3 className="text-xl text-slate-900">
                           {t(step.title)}
                         </h3>
@@ -178,7 +174,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
       </section>
 
       {/* Requirements */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-indigo-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl text-slate-900 mb-4">
@@ -203,7 +199,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
                     {Array.isArray(req.items) ? (
                       req.items.map((item, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
                           <span className="text-slate-600 text-sm">
                             {t(item)}
                           </span>
@@ -211,7 +207,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
                       ))
                     ) : (
                       <li className="flex items-start gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
                         <span className="text-slate-600 text-sm">
                           {t(req.items)}
                         </span>
@@ -237,7 +233,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
           <div className="bg-white rounded-lg shadow-md p-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-24 shrink-0 text-emerald-600">
+                <div className="w-24 shrink-0 text-slate-600">
                   {t({ id: "Hari 1-3", en: "Day 1-3" })}
                 </div>
                 <div className="flex-1 text-slate-700">
@@ -248,7 +244,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-24 shrink-0 text-emerald-600">
+                <div className="w-24 shrink-0 text-slate-600">
                   {t({ id: "Hari 4-7", en: "Day 4-7" })}
                 </div>
                 <div className="flex-1 text-slate-700">
@@ -259,7 +255,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-24 shrink-0 text-emerald-600">
+                <div className="w-24 shrink-0 text-slate-600">
                   {t({ id: "Hari 8-10", en: "Day 8-10" })}
                 </div>
                 <div className="flex-1 text-slate-700">
@@ -270,7 +266,7 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="w-24 shrink-0 text-emerald-600">
+                <div className="w-24 shrink-0 text-slate-600">
                   {t({ id: "Hari 11-14", en: "Day 11-14" })}
                 </div>
                 <div className="flex-1 text-slate-700">
@@ -286,36 +282,28 @@ export function HowToJoinPage({ onNavigate }: HowToJoinPageProps) {
       </section>
 
       {/* CTA */}
-      <section className="bg-linear-to-br from-slate-900 to-slate-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl mb-4">
-            {t({ id: "Siap Memulai?", en: "Ready to Start?" })}
-          </h2>
-          <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
-            {t({
-              id: "Lihat kategori keanggotaan dan biaya untuk memilih yang sesuai untuk bisnis Anda",
-              en: "View membership categories and fees to choose the right fit for your business",
-            })}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700"
-              onClick={() => onNavigate("/membership")}
-            >
-              {t({ id: "Lihat Keanggotaan", en: "View Membership" })}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => onNavigate("/ajukan-listing-perusahaan")}
-            >
-              {t({ id: "Ajukan Sekarang", en: "Apply Now" })}
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CallToAction
+        variant="purple"
+        useCard={false}
+        title={{ id: "Siap Memulai?", en: "Ready to Start?" }}
+        description={{
+          id: "Lihat kategori keanggotaan dan biaya untuk memilih yang sesuai untuk bisnis Anda",
+          en: "View membership categories and fees to choose the right fit for your business",
+        }}
+        buttons={[
+          {
+            text: { id: "Lihat Keanggotaan", en: "View Membership" },
+            onClick: () => onNavigate("/membership"),
+            variant: "default",
+            icon: <ArrowRight className="w-4 h-4" />,
+          },
+          {
+            text: { id: "Ajukan Sekarang", en: "Apply Now" },
+            onClick: () => onNavigate("/ajukan-listing-perusahaan"),
+            variant: "outline",
+          },
+        ]}
+      />
     </div>
   );
 }

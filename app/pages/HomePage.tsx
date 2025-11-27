@@ -1,16 +1,16 @@
+import {
+  ArrowRight, Building2,
+  FileCheck,
+  Handshake,
+  Info,
+  Users,
+  Utensils
+} from "lucide-react";
+import { CallToAction } from "../../components/CallToAction";
+import { Hero } from "../../components/Hero";
+import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../data/translations";
-import { Button } from "../../components/ui/button";
-import { Card, CardContent } from "../../components/ui/card";
-import {
-  Building2,
-  Utensils,
-  Users,
-  ArrowRight,
-  Award,
-  BookOpen,
-  Calendar,
-} from "lucide-react";
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -39,67 +39,58 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
   const features = [
     {
-      icon: Award,
-      title: { id: "Standar Kualitas", en: "Quality Standards" },
+      icon: FileCheck,
+      title: { id: "Amanat AD/ART PHRI", en: "PHRI Articles of Association" },
       description: {
-        id: "Mendorong keunggulan melalui standar industri dan program sertifikasi",
-        en: "Driving excellence through industry standards and certification programs",
+        id: "Setiap badan usaha pariwisata bidang hotel, restoran, dan lembaga pendidikan kepariwisataan adalah bagian dari keanggotaan PHRI dalam upaya memajukan usahanya secara bersama-sama agar mempunyai kekuatan yang optimal",
+        en: "Every tourism business in hotels, restaurants, and tourism education institutions is part of PHRI membership in efforts to advance their businesses together to have optimal strength",
       },
     },
     {
-      icon: BookOpen,
-      title: { id: "Pendidikan & Pelatihan", en: "Education & Training" },
+      icon: Handshake,
+      title: { id: "Manfaat Bersama", en: "Mutual Benefits" },
       description: {
-        id: "Workshop, seminar, dan pelatihan berkelanjutan untuk anggota",
-        en: "Workshops, seminars, and ongoing training for members",
+        id: "Saling memberikan manfaat antar sesama anggota PHRI baik untuk kemajuan bisnisnya maupun dalam pengurusan perizinan usahanya",
+        en: "Provide mutual benefits among PHRI members for business advancement and assistance with business licensing processes",
       },
     },
     {
-      icon: Calendar,
-      title: { id: "Networking & Acara", en: "Networking & Events" },
+      icon: Info,
+      title: { id: "Informasi & Pelatihan", en: "Information & Training" },
       description: {
-        id: "Konferensi, mixer, dan acara networking reguler untuk membangun koneksi",
-        en: "Conferences, mixers, and regular networking events to build connections",
+        id: "Mendapatkan informasi tentang perkembangan dunia usaha hotel & restoran serta kebutuhan hotel dan restoran lainnya seperti pelatihan SDM, dll",
+        en: "Receive information about hotel & restaurant business developments and other hotel and restaurant needs such as HR training, etc.",
       },
     },
   ];
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative bg-linear-to-br from-slate-900 via-slate-800 to-indigo-900 text-white">
-        <div className="absolute inset-0 bg-[url('https://plus.unsplash.com/premium_photo-1682092934139-187d9f73e32c?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6">
-              {t(translations.hero.title)}
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-200 mb-8">
-              {t(translations.hero.subtitle)}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                className="bg-purple-700 hover:bg-purple-800"
-                onClick={() => onNavigate("/how-to-join")}
-              >
-                {t(translations.hero.joinNow)}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-                onClick={() => onNavigate("/membership")}
-              >
-                {t(translations.hero.exploreMembership)}
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero */}
+      <Hero
+        variant="slateWithImage"
+        size="large"
+        backgroundImage="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        title={translations.hero.title}
+        description={translations.hero.subtitle}
+        buttons={[
+          {
+            text: translations.hero.joinNow,
+            onClick: () => onNavigate("/how-to-join"),
+            className: "bg-purple-700 hover:bg-purple-800",
+            icon: <ArrowRight className="w-4 h-4" />,
+          },
+          {
+            text: translations.hero.exploreMembership,
+            onClick: () => onNavigate("/membership"),
+            variant: "outline",
+            className:
+              "bg-white/10 border-white/20 text-white hover:bg-white/20",
+          },
+        ]}
+      />
 
-      {/* Stats Section */}
+      {/* Stats */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -187,39 +178,29 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-linear-to-br from-purple-800 to-indigo-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl mb-4">
-            {t({ id: "Siap Bergabung?", en: "Ready to Join?" })}
-          </h2>
-          <p className="text-xl text-indigo-50 mb-8 max-w-2xl mx-auto">
-            {t({
-              id: "Mulai perjalanan Anda dengan PHRI Bandung dan tingkatkan bisnis perhotelan Anda",
-              en: "Start your journey with PHRI Bandung and elevate your hospitality business",
-            })}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-white text-indigo-700 hover:bg-slate-100"
-              variant="outline"
-              onClick={() => onNavigate("/how-to-join")}
-            >
-              {t({ id: "Cara Bergabung", en: "How to Join" })}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-            <Button
-              size="lg"
-              className="bg-white text-neutral-950 hover:bg-slate-100"
-              variant="secondary"
-              onClick={() => onNavigate("/active-member")}
-            >
-              {t(translations.hero.viewDirectory)}
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* CTA */}
+      <CallToAction
+        variant="purple"
+        useCard={false}
+        title={{ id: "Siap Bergabung?", en: "Ready to Join?" }}
+        description={{
+          id: "Mulai perjalanan Anda dengan PHRI Bandung dan tingkatkan bisnis perhotelan Anda",
+          en: "Start your journey with PHRI Bandung and elevate your hospitality business",
+        }}
+        buttons={[
+          {
+            text: { id: "Cara Bergabung", en: "How to Join" },
+            onClick: () => onNavigate("/how-to-join"),
+            variant: "default",
+            icon: <ArrowRight className="w-4 h-4" />,
+          },
+          {
+            text: translations.hero.viewDirectory,
+            onClick: () => onNavigate("/active-member"),
+            variant: "secondary",
+          },
+        ]}
+      />
     </div>
   );
 }
