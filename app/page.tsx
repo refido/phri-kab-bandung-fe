@@ -1,22 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { LanguageProvider } from "./contexts/LanguageContext";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { HomePage } from "../app/pages/HomePage";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { Toaster } from "../components/ui/sonner";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import { AboutPage } from "./pages/AboutPage";
-import { MembershipPage } from "./pages/MembershipPage";
 import { ActiveMembersPage } from "./pages/ActiveMembersPage";
-import { ContactPage } from "./pages/ContactPage";
-import { HowToJoinPage } from "./pages/HowToJoinPage";
-import { OrganizationalStructurePage } from "./pages/OrganizationalStructurePage";
-import { CalendarEventsPage } from "./pages/CalendarEventsPage";
-import { GalleryPage } from "./pages/GalleryPage";
 import { ArticlesPage } from "./pages/ArticlesPage";
 import { AssociatedMembersPage } from "./pages/AssociatedMembersPage";
+import { CalendarEventsPage } from "./pages/CalendarEventsPage";
+import { ContactPage } from "./pages/ContactPage";
+import { GalleryPage } from "./pages/GalleryPage";
+import { HowToJoinPage } from "./pages/HowToJoinPage";
+import { MembershipPage } from "./pages/MembershipPage";
+import { OrganizationalStructurePage } from "./pages/OrganizationalStructurePage";
 import { SubmitListingPage } from "./pages/SubmitListingPage";
-import { Toaster } from "../components/ui/sonner";
 export default function App() {
   const [currentPage, setCurrentPage] = useState("/");
 
@@ -42,13 +42,13 @@ export default function App() {
       case "/organizational-structure":
         return <OrganizationalStructurePage />;
       case "/calendar-events":
-        return <CalendarEventsPage />;
+        return <CalendarEventsPage onNavigate={handleNavigate} />;
       case "/gallery":
         return <GalleryPage />;
       case "/artikel":
         return <ArticlesPage />;
       case "/associated-member":
-        return <AssociatedMembersPage />;
+        return <AssociatedMembersPage onNavigate={handleNavigate} />;
       case "/ajukan-listing-perusahaan":
         return <SubmitListingPage />;
       default:

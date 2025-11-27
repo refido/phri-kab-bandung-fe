@@ -8,6 +8,7 @@ import {
   Users,
   Utensils,
 } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
@@ -123,10 +124,13 @@ export function ActiveMembersPage() {
                       className="border-0 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       {member.images.length > 0 && (
-                        <img
+                        <Image
                           src={member.images[0]}
                           alt={member.name}
                           className="w-full h-48 object-cover"
+                          width={1080}
+                          height={720}
+                          loading="lazy"
                         />
                       )}
                       <CardContent className="p-6">

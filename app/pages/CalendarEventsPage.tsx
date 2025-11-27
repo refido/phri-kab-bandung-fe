@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { enUS, id as idLocale } from "date-fns/locale";
 import { Calendar, Clock, MapPin, User } from "lucide-react";
+import Image from "next/image";
 import { CallToAction } from "../../components/CallToAction";
 import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
@@ -8,7 +9,6 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../contexts/LanguageContext";
 import { mockEvents } from "../data/mockData";
-
 interface CalendarEventsPageProps {
   onNavigate: (page: string) => void;
 }
@@ -54,10 +54,13 @@ export function CalendarEventsPage({ onNavigate }: CalendarEventsPageProps) {
                   >
                     <div className="grid md:grid-cols-3 gap-6">
                       <div className="md:col-span-1">
-                        <img
+                        <Image
                           src={event.image}
                           alt={t(event.title)}
                           className="w-full h-64 md:h-full object-cover"
+                          width={1080}
+                          height={720}
+                          loading="lazy"
                         />
                       </div>
                       <CardContent className="md:col-span-2 p-6">
@@ -131,10 +134,13 @@ export function CalendarEventsPage({ onNavigate }: CalendarEventsPageProps) {
                   key={event.id}
                   className="border-0 shadow-md hover:shadow-lg transition-shadow"
                 >
-                  <img
+                  <Image
                     src={event.image}
                     alt={t(event.title)}
                     className="w-full h-48 object-cover"
+                    width={1080}
+                    height={720}
+                    loading="lazy"
                   />
                   <CardContent className="p-6">
                     <h3 className="text-xl text-slate-900 mb-2">

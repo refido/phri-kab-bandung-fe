@@ -1,9 +1,9 @@
 import { ArrowRight, Calendar, User } from "lucide-react";
+import Image from "next/image";
 import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
 import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../contexts/LanguageContext";
-
 export function ArticlesPage() {
   const { t } = useLanguage();
 
@@ -76,10 +76,13 @@ export function ArticlesPage() {
           {articles[0] && (
             <Card className="border-0 shadow-xl overflow-hidden mb-12">
               <div className="grid md:grid-cols-2 gap-0">
-                <img
+                <Image
                   src={articles[0].image}
                   alt={t(articles[0].title)}
                   className="w-full h-full object-cover"
+                  width={1080}
+                  height={720}
+                  loading="lazy"
                 />
                 <CardContent className="p-8 md:p-12 flex flex-col justify-center">
                   <Badge className="bg-purple-100 text-purple-700 w-fit mb-4">
@@ -121,10 +124,13 @@ export function ArticlesPage() {
                 key={article.id}
                 className="border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
               >
-                <img
+                <Image
                   src={article.image}
                   alt={t(article.title)}
                   className="w-full h-56 object-cover"
+                  width={1080}
+                  height={720}
+                  loading="lazy"
                 />
                 <CardContent className="p-6">
                   <Badge className="bg-slate-100 text-slate-700 mb-3">

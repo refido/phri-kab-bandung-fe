@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import { Hero } from "../../components/Hero";
 import { Badge } from "../../components/ui/badge";
@@ -88,10 +89,12 @@ export function GalleryPage() {
                 className="break-inside-avoid border-0 shadow-md hover:shadow-xl transition-shadow cursor-pointer overflow-hidden"
                 onClick={() => setSelectedImage(item.id)}
               >
-                <img
+                <Image
                   src={item.image}
                   alt={t(item.caption)}
                   className="w-full object-cover"
+                  width={1080}
+                  height={720}
                   loading="lazy"
                 />
                 <div className="p-4">
@@ -140,10 +143,13 @@ export function GalleryPage() {
                   >
                     <X className="w-5 h-5" />
                   </button>
-                  <img
+                  <Image
                     src={item.image}
                     alt={t(item.caption)}
                     className="w-full h-auto max-h-[90vh] object-contain"
+                    width={1080}
+                    height={720}
+                    loading="lazy"
                   />
                   <div className="p-6 bg-white">
                     <Badge className="bg-purple-100 text-purple-700 mb-2">

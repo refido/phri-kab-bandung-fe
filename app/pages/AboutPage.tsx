@@ -1,4 +1,5 @@
 import { Award, Eye, MapPin, Target, Users } from "lucide-react";
+import Image from "next/image";
 import { Hero } from "../../components/Hero";
 import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -85,10 +86,13 @@ export function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGxvYmJ5fGVufDF8fHx8MTc2MjAxMTI3OHww&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="PHRI Kab Bandung"
                 className="rounded-lg shadow-xl"
+                width={1080}
+                height={720}
+                loading="lazy"
               />
             </div>
           </div>
